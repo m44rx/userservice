@@ -1,4 +1,5 @@
-FROM openjdk:17-alpine AS builder
+# FROM openjdk:17-alpine AS builder
+FROM eclipse-temurin:17 AS builder
 
 WORKDIR /app
 
@@ -18,7 +19,8 @@ RUN ./mvnw dependency:go-offline -B
 RUN ./mvnw package -DskipTests
 
 # --- Segunda etapa: Imagen de ejecución ---
-FROM openjdk:17-alpine
+# FROM openjdk:17-alpine
+FROM eclipse-temurin:17
 
 # Establece el directorio de trabajo
 WORKDIR /app
